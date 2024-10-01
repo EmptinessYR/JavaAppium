@@ -1,0 +1,1 @@
+/Users/admin/Library/Android/sdk/emulator/emulator @and80_automator &
