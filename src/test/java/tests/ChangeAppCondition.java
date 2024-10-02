@@ -1,16 +1,18 @@
 package tests;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Epic;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.ArticlePageObject;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.ArticlePageObjectFactorie;
 import lib.ui.factories.SearchPageObjectFactorie;
+import org.junit.Assert;
 import org.junit.Test;
-
 import java.time.Duration;
 
+@Epic("Tests for change devise conditions")
 public class ChangeAppCondition extends CoreTestCase {
 
     String TITLE_DESCRIPTION_JAVA = "Object-oriented programming language";
@@ -40,7 +42,7 @@ public class ChangeAppCondition extends CoreTestCase {
         // Вывод значения переменной в консоль
         System.out.println("undertitle after rotation: " + undertitel_after_rotation);
 
-        assertEquals(
+        Assert.assertEquals(
                 "Article undertitle have been changed after screen rotation",
                 undertitel_before_rotation,
                 undertitel_after_rotation
@@ -54,7 +56,7 @@ public class ChangeAppCondition extends CoreTestCase {
         // Вывод значения переменной в консоль
         System.out.println("undertitle after 2 rotation: " + undertitel_after_second_rotation);
 
-        assertEquals(
+        Assert.assertEquals(
                 "Article undertitle have been changed after screen rotation",
                 undertitel_before_rotation,
                 undertitel_after_second_rotation

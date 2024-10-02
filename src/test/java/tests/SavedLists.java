@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
@@ -7,8 +9,10 @@ import lib.ui.factories.ArticlePageObjectFactorie;
 import lib.ui.factories.NavigationUIFactorie;
 import lib.ui.factories.SavedObjectsFactorie;
 import lib.ui.factories.SearchPageObjectFactorie;
+import org.junit.Assert;
 import org.junit.Test;
 
+@Epic("Tests for saved lists")
 public class SavedLists extends CoreTestCase {
 
     private static final String
@@ -21,6 +25,11 @@ public class SavedLists extends CoreTestCase {
 
 
     @Test
+    @Features(value = {@Feature(value="Search"),@Feature(value="Article"),@Feature(value="Main menu"),@Feature(value="Saved lists")})
+    @DisplayName("Add and delete article from saved list")
+    @Description("We open an article and add it in saved list. Then we go to saved list and delete our article from there")
+    @Step("Starting test testAddAndDeleteListOfArticles")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testAddAndDeleteListOfArticles()
     {
         SearchPageObject SearchPageObject = SearchPageObjectFactorie.get(driver);
@@ -62,7 +71,7 @@ public class SavedLists extends CoreTestCase {
             Auth.submitForm();
 
             ArticlePageObject.waitForTitleElement(TITLE_DESCRIPTION_JAVA);
-            assertEquals("We are not on the same page after login",
+            Assert.assertEquals("We are not on the same page after login",
                     article_title,
                     ArticlePageObject.getArticleTitle("Java (programming language)")
             );
@@ -75,10 +84,14 @@ public class SavedLists extends CoreTestCase {
             SavedObjects SavedObjects = SavedObjectsFactorie.get(driver);
             SavedObjects.swipeByArticleToDelete(article_title);
         }
-
     }
 
     @Test
+    @Features(value = {@Feature(value="Search"),@Feature(value="Article"),@Feature(value="Main menu"),@Feature(value="Saved lists")})
+    @DisplayName("Add 2 articles to saved. And delete one of them from saved list")
+    @Description("We open 1 article and add it in saved list. We open 2 article and add it in saved list. Then we go to saved list, delete 1 article and check that another article stay in list")
+    @Step("Starting test testSaveTwoArticlesInList")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testSaveTwoArticlesInList ()
     {
         SearchPageObject SearchPageObject = SearchPageObjectFactorie.get(driver);
@@ -128,7 +141,7 @@ public class SavedLists extends CoreTestCase {
             Auth.enterLoginData(login,password);
             Auth.submitForm();
             ArticlePageObject.waitForTitleElement(TITLE_DESCRIPTION_JAVA);
-            assertEquals("We are not on the same page after login",
+            Assert.assertEquals("We are not on the same page after login",
                     article_title_to_delete,
                     ArticlePageObject.getArticleTitle("Java (programming language)")
             );

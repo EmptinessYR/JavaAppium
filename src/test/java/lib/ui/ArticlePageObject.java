@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import lib.ui.MainPageObject;
 import org.openqa.selenium.WebElement;
@@ -45,15 +46,18 @@ abstract public class ArticlePageObject extends MainPageObject
         return CREATED_LIST_ID_TPL.replace("{NAME_OF_ARTICLE}", name_of_list);
     }
 
+    @Step("Waiting for title on the article page")
     public WebElement waitForTitleElement(String title_description)
     {
         String title_description_xpath = getTitleDescriptionXpathByTitle(title_description);
         return this.waitForElementPresent(title_description_xpath, "Cannot find article on page!", 15);
     }
 
+    @Step("Get article title")
     public String getArticleTitle(String title_description)
     {
         WebElement title_element = waitForTitleElement(title_description);
+        screenshot(this.takeScreenshot("article_title"));
         if (Platform.getInstance().isAndroid()) {
             return title_element.getAttribute("text");
         } else if (Platform.getInstance().isIOS()) {
@@ -63,6 +67,7 @@ abstract public class ArticlePageObject extends MainPageObject
         }
     }
 
+    @Step("Swipe article to the footer")
     public void swipeToFooter()
     {
         if (Platform.getInstance().isAndroid()){
@@ -86,6 +91,7 @@ abstract public class ArticlePageObject extends MainPageObject
 
     }
 
+    @Step("Adding the article to my saved list (only for iOS)")
     public void addArticleToMyNewListIOS(String name_of_list)
     {
         //Кликаем на Save
@@ -125,6 +131,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Adding article to existing saved list")
     public void addArticleToMyExistingList(String name_of_list)
     {
         this.waitForElementAndClick(
@@ -148,6 +155,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Adding the article to my saved list ")
     public void addArticleToMyList (String name_of_list)
     {
         //Кликаем на Save
@@ -180,6 +188,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Adding article to created saved list")
     public void addArticleToCreatedList (String name_of_list)
     {
         //Кликаем на Save
@@ -204,6 +213,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Adding article to created saved list")
     public void addArticlesToMySaved()
     {
         if (Platform.getInstance().isMW()){
@@ -212,6 +222,7 @@ abstract public class ArticlePageObject extends MainPageObject
         this.waitForElementAndClick(SAVE_BUTTON, "Cannot find option to add article to saved list", 5);
     }
 
+    @Step("Deleting an article if it added to saved list")
     public void removeArticleFromSavedIfItAdded ()
     {
         if (this.isElementPresent(REMOVE_FROM_MY_LIST_BUTTON)) {
@@ -227,6 +238,7 @@ abstract public class ArticlePageObject extends MainPageObject
         }
     }
 
+    @Step("Closing the article")
     public void closeArticle()
     {
         if (Platform.getInstance().isAndroid() || Platform.getInstance().isIOS()) {
@@ -256,6 +268,7 @@ abstract public class ArticlePageObject extends MainPageObject
         }
     }
 
+    @Step("closing the article to find another")
     public void closeArticleToSearchNextArticleIOS()
     {
         //Выходим на страницу поиска
@@ -271,6 +284,7 @@ abstract public class ArticlePageObject extends MainPageObject
         );
     }
 
+    @Step("Make sure that title description element is present")
     public void assertElementPresentArticleTitleDescription()
     {
         // Проверяем наличие элемента pcs-edit-section-title-description, так как у Заголовка нет ID

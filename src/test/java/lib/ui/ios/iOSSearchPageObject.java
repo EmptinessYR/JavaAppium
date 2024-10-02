@@ -11,7 +11,7 @@ public class iOSSearchPageObject extends SearchPageObject {
         SEARCH_INPUT_ID = "xpath://XCUIElementTypeSearchField[@name='Search Wikipedia']"; //в андроид версии есть id
         SEARCH_CANCEL_BUTTON = "xpath://XCUIElementTypeStaticText[@name='Cancel']";
         SEARCH_CANCEL_CLOSE_BUTTON = "id:Clear text";
-        SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath:(//XCUIElementTypeStaticText[contains(@name,'{SUBSTRING}')])";
+        SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath:(//XCUIElementTypeStaticText[contains(@name,'{SUBSTRING_TPL}')])";
         SEARCH_RESULT_ELEMENT = "xpath://XCUIElementTypeOther[2]//XCUIElementTypeStaticText[not(@name='No recent searches yet')][1]";
         SEARCH_EMPTY_RESULT_LABEL = "xpath://XCUIElementTypeStaticText[@name='No results found']";
         SEARCH_RESULT_LIST = "xpath://XCUIElementTypeOther[2]//XCUIElementTypeStaticText[not(@name='No recent searches yet')][1]";

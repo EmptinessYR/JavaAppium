@@ -1,10 +1,12 @@
 package tests;
 
+import io.qameta.allure.Epic;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.WelcomePageObject;
 import org.junit.Test;
 
+@Epic("Test for passes Welcome pages. Only for iOS")
 public class GetStartedTest extends CoreTestCase {
 
     @Test
